@@ -1,11 +1,32 @@
-<h1>New Shelf</h1>
+<div style="width: 40vw;">
+<h1>Add New Shelf</h1>
+<form class="form-horizontal" method="POST" action="<%= shelfs_path  %>">
+  <input name="authenticity_token" value="<%= form_authenticity_token%>"  type="hidden" >
 
-<%= form_for @shelf, url: shelfs_path do |form| %>
-  <%= form.label :name %>
-  <%= form.text_field :name %>
-   <%= form.label :section_id %>
-  <%= form.text_field :section_id, value: params[:section_id] %>
-  <%= form.submit %>
-<% end %>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Name</label>
+    <div class="col-sm-10">
+      <input class="form-control" name="shelf[name]"/>
+    </div>
+  </div>
 
-<%= link_to 'Back', sections_path %>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Section</label> 
+    <div class="col-sm-10">
+      <select class="form-control" name="shelf[section_id]">
+      <option >Select Section</option>
+          <% Section.all.each do |section| %>
+            <option value="<%= section.id %>"><%= section.name %></option>
+          <% end %>
+      </select> 
+    </div>
+  </div>
+
+  <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">+ Add New Shelf</button>
+      </div>
+  </div>
+
+</form>
+</div>

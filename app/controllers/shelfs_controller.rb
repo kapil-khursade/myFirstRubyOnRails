@@ -40,7 +40,7 @@ class ShelfsController < ApplicationController
     @shelf = Shelf.find(params[:id])
     @shelf.destroy
 
-    redirect_to sections_path, notice: 'Shelf was successfully destroyed.'
+    redirect_to shelfs_path, notice: @shelf.name + ' Shelf was successfully destroyed.'
   end
 
   private

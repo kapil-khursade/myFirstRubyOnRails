@@ -39,7 +39,7 @@ class MembersController < ApplicationController
     @member = Member.find(params[:id])
     @member.destroy
 
-    redirect_to sections_path, notice: 'Member was successfully destroyed.'
+    redirect_to sections_path, notice: @member.firstName + 'Member was successfully destroyed.'
   end
 
   def search

@@ -1,4 +1,9 @@
 <div>
+<% if flash[:notice].present? %>
+  <div style="color: red" class="notice">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
 <h1>Library Members</h1>
 <form class="form-horizontal" method="GET" action="http://127.0.0.1:3000/api/members">
   <input name="authenticity_token" value="<%= form_authenticity_token%>"  type="hidden" >

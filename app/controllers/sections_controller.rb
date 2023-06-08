@@ -40,7 +40,7 @@ class SectionsController < ApplicationController
     @section = Section.find(params[:id])
     @section.destroy
 
-    redirect_to sections_path, notice: 'Section was successfully destroyed.'
+    redirect_to sections_path, notice: @section.name + ' Section was successfully destroyed.'
   end
 
   private

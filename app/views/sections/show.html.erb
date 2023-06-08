@@ -1,20 +1,22 @@
-<h1><%= @section.name %></h1>
-<h2><%= "Shelfs In This Section" %></h2>
-
-<ol>
+<h1><%= @section.name + " Section" %></h1>
+<h3><%= "Shelfs In This Section" %></h3>
+<ol class="list-group">
 <% Shelf.all.each do |shelf|%>
 <%if @section.id == shelf.section_id%>
-    <li><%=link_to shelf.name, shelf_path(shelf) %></li>
+    <li class="list-group-item list-group-item-success"><%=link_to shelf.name, shelf_path(shelf) %></li>
 <%end%>
 <%end%>
 </ol>
 
-<li><%= link_to "+ Add New Shelf", new_shelf_path(section_id: @section.id) %></li>
-<%= link_to 'Edit', edit_section_path(@section) %>
-<%= link_to 'Back', sections_path %>
+<%= link_to "+ Add New Shelf", new_shelf_path(), class: 'btn btn-primary btn-lg' %>
+<br /><br />
+<%= link_to "Edit Section Name", edit_section_path(), class: 'btn btn-warning btn-lg' %>
+
 <br /><br />
 <form method="POST" action="<%= section_path(id: @section.id)  %>">
     <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
     <input name="_method" value="DELETE" type="hidden">
-    <input type="submit" value="Delete" />
+    <div class="input-group-btn">
+         <button class="btn btn-danger" type="submit">Delete Section</button>
+    </div>
 </form>

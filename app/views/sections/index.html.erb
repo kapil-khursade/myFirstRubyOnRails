@@ -1,10 +1,14 @@
+<div>
+<% if flash[:notice].present? %>
+  <div style="color: red" class="notice">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
 <h1>Sections</h1>
-
-<ol>
+<ol class="list-group">
   <% @sections.each do |section| %>
-    <li><%= link_to section.name, section_path(section) %></li>
+    <li class="list-group-item list-group-item-success"><%= link_to section.name, section_path(section) %></li>
   <% end %>
 </ol>
-
- <li><%= link_to "+ Add New Section", new_section_path() %></li>
-
+<%= link_to "+ Add New Section", new_section_path(), class: 'btn btn-primary btn-lg' %>
+</div>
