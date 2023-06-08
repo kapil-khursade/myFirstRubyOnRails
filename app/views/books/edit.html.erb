@@ -30,8 +30,10 @@
     <div class="col-sm-10">
       <select class="form-control" id="sectionId">
       <option >Select Section</option>
+          <% @current_section_id = Shelf.find(@book.shelf_id)[ :section_id] %>
+
           <% Section.all.each do |section| %>
-            <option value="<%= section.id %>"><%= section.name %></option>
+            <option value="<%= section.id %>" <%= 'selected' if section.id == @current_section_id %>><%= section.name %></option>
           <% end %>
       </select> 
     </div>

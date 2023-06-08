@@ -1,17 +1,51 @@
+<div style="width: 40vw;">
 <h1>Edit Member</h1>
+<form class="form-horizontal" method="POST" action="<%= member_path  %>">
+  <input name="authenticity_token" value="<%= form_authenticity_token%>"  type="hidden" >
+  <input name="_method" value="PUT"  type="hidden" >
 
-<%= form_with(model: @member, local: true) do |form| %>
-   <%= form.label :firstName %>
-  <%= form.text_field :firstName %>
-  <%= form.label :lastName %>
-  <%= form.text_field :lastName %>
-  <%= form.label :mobileNumber %>
-  <%= form.text_field :mobileNumber %>
-  <%= form.label :address %>
-  <%= form.text_field :address %>
-  <%= form.label :expiryDate %>
-  <%= form.text_field :expiryDate %>
-  <%= form.submit %>
-<% end %>
+  <div class="form-group">
+    <label class="col-sm-2 control-label"> First Name</label>
+    <div class="col-sm-10">
+      <input class="form-control" name="member[firstName]" value="<%= @member.firstName%>"/>
+    </div>
+  </div>
 
-<%= link_to 'Back', sections_path %>
+  <div class="form-group">
+    <label class="col-sm-2 control-label"> Last Name</label>
+    <div class="col-sm-10">
+      <input class="form-control" name="member[lastName]" value="<%= @member.lastName%>"/>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label"> Address</label>
+    <div class="col-sm-10">
+      <input class="form-control" name="member[address]" value="<%= @member.address%>"/>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label"> Mobile Number</label>
+    <div class="col-sm-10">
+      <input class="form-control" name="member[mobileNumber]" value="<%= @member.mobileNumber%>"/>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label"> Expiry Date</label>
+    <div class="col-sm-10">
+      <input type="date" class="form-control" name="member[expiryDate]" value="<%= @member.expiryDate%>"/>
+    </div>
+  </div>
+
+
+  <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">Update Member</button>
+      </div>
+  </div>
+</form>
+</div>
+
+
