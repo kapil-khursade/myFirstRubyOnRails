@@ -1,0 +1,12 @@
+<div style="margin: 2vh 5vw">
+<h2>Search Result</h2>
+<% if @members.any? %>
+<ol class="list-group">
+  <% @members.each do |member| %>
+      <li class="list-group-item list-group-item-success"><%= link_to member.firstName + " " + member.lastName, member_path(member) %></li>
+  <% end %>
+</ol>
+<% else %>
+  <p>No matching members found.</p>
+<% end %>
+<%= link_to 'Back', sections_path %>

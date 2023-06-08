@@ -1,0 +1,28 @@
+<div style="width: 50vw">
+<h2>Search Result</h2>
+<% if @books.any? %>
+<table class="table table-condensed table-bordered">
+    <thead>
+      <tr>
+        <th>Book</th>
+        <th>Section</th>
+        <th>Shelf</th>
+      </tr>
+    </thead>
+    <tbody>
+  <% @books.each do |book| %>
+      <tr>
+        <td><%= link_to book.name, book_path(book) %></td>
+        <td><%= book.shelf.section.name %></td>
+        <td><%= book.shelf.name %></td>
+      </tr>
+  <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No matching books found.</p>
+<% end %>
+</div>
+
+
+

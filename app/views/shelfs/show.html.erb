@@ -1,0 +1,21 @@
+<h1><%= @shelf.name %></h1>
+
+<h2><%= "Books In This Section" %></h2>
+
+<ol>
+<% Book.all.each do |book|%>
+<%if @shelf.id == book.shelf_id%>
+    <li><%=link_to book.name, book_path(book) %></li>
+<%end%>
+<%end%>
+</ol>
+
+<li><%= link_to "+ Add New Book", new_book_path(shelf_id: @shelf.id) %></li>
+<%= link_to 'Edit', edit_shelf_path(@shelf) %>
+<%= link_to 'Back', sections_path %>
+<br /><br />
+<form method="POST" action="<%= shelf_path(id: @shelf.id)  %>">
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+    <input name="_method" value="DELETE" type="hidden">
+    <input type="submit" value="Delete" />
+</form>

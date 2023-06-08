@@ -1,0 +1,9 @@
+<h1>Shelfs</h1>
+
+<ol>
+  <% @shelfs.each do |shelf| %>
+  <li><%= link_to shelf.name, shelf_path(shelf)%></li>
+  <% end %>
+</ol>
+
+ <li><%= link_to "+ Add New Shelf", new_shelf_path() %></li>

@@ -1,0 +1,45 @@
+<div style="width: 40vw;">
+<h1>Edit Book</h1>
+<form class="form-horizontal" method="POST" action="<%= book_path  %>">
+  <input name="authenticity_token" value="<%= form_authenticity_token%>"  type="hidden" >
+  <input name="_method" value="PUT"  type="hidden" >
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Name</label>
+    <div class="col-sm-10">
+      <input class="form-control" name="book[name]" value="<%= @book.name %>"/>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Author</label>
+    <div class="col-sm-10">
+     <input class="form-control" name="book[author]" value="<%= @book.author %>"/>
+     </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Publication Year</label>
+    <div class="col-sm-10">
+     <input class="form-control" type="number" name="book[publication_year]" value="<%= @book.publication_year %>"/>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Shelf</label> 
+    <div class="col-sm-10">
+      <input class="form-control" type="number" name="book[shelf_id]" value="<%= @book.shelf_id %>"/>
+    </div>
+  </div>
+
+  <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">Update Book</button>
+      </div>
+  </div>
+
+</form>
+</div>
+
+
+

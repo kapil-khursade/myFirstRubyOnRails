@@ -1,0 +1,17 @@
+<h1>Edit Member</h1>
+
+<%= form_with(model: @member, local: true) do |form| %>
+   <%= form.label :firstName %>
+  <%= form.text_field :firstName %>
+  <%= form.label :lastName %>
+  <%= form.text_field :lastName %>
+  <%= form.label :mobileNumber %>
+  <%= form.text_field :mobileNumber %>
+  <%= form.label :address %>
+  <%= form.text_field :address %>
+  <%= form.label :expiryDate %>
+  <%= form.text_field :expiryDate %>
+  <%= form.submit %>
+<% end %>
+
+<%= link_to 'Back', sections_path %>

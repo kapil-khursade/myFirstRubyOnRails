@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  author: MyString
+  publication_year: 1
+  shelf: 
+
+two:
+  name: MyString
+  author: MyString
+  publication_year: 1
+  shelf: 

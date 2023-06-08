@@ -1,0 +1,11 @@
+<h1>New Shelf</h1>
+
+<%= form_for @shelf, url: shelfs_path do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+   <%= form.label :section_id %>
+  <%= form.text_field :section_id, value: params[:section_id] %>
+  <%= form.submit %>
+<% end %>
+
+<%= link_to 'Back', sections_path %>
