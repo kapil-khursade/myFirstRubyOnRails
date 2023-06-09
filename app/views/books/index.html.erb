@@ -14,5 +14,7 @@
   <% end %>
 </ol>
 
+<% if current_member.role == "admin" %>
 <%= link_to "+ Add New Book", new_book_path(), class: 'btn btn-primary btn-lg' %>
+<% end%>
 </div>

@@ -8,15 +8,17 @@
 <%end%>
 </ol>
 
-<%= link_to "+ Add New Shelf", new_shelf_path(), class: 'btn btn-primary btn-lg' %>
-<br /><br />
-<%= link_to "Edit Section Name", edit_section_path(), class: 'btn btn-warning btn-lg' %>
+<% if current_member.role == "admin" %>
+    <%= link_to "+ Add New Shelf", new_shelf_path(), class: 'btn btn-primary btn-lg' %>
+    <br /><br />
+    <%= link_to "Edit Section Name", edit_section_path(), class: 'btn btn-warning btn-lg' %>
 
-<br /><br />
-<form method="POST" action="<%= section_path(id: @section.id)  %>">
-    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-    <input name="_method" value="DELETE" type="hidden">
-    <div class="input-group-btn">
-         <button class="btn btn-danger" type="submit">Delete Section</button>
-    </div>
-</form>
+    <br /><br />
+    <form method="POST" action="<%= section_path(id: @section.id)  %>">
+        <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+        <input name="_method" value="DELETE" type="hidden">
+        <div class="input-group-btn">
+            <button class="btn btn-danger" type="submit">Delete Section</button>
+        </div>
+    </form>
+<%end%>

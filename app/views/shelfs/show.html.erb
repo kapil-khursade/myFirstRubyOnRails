@@ -8,15 +8,17 @@
 <%end%>
 </ol>
 
-<%= link_to "+ Add New Book", new_book_path(), class: 'btn btn-primary btn-lg' %>
-<br /><br />
-<%= link_to "Edit Shelf", edit_shelf_path(), class: 'btn btn-warning btn-lg' %>
+<% if current_member.role == "admin" %>
+    <%= link_to "+ Add New Book", new_book_path(), class: 'btn btn-primary btn-lg' %>
+    <br /><br />
+    <%= link_to "Edit Shelf", edit_shelf_path(), class: 'btn btn-warning btn-lg' %>
 
-<br /><br />
-<form method="POST" action="<%= shelf_path(id: @shelf.id)  %>">
-    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-    <input name="_method" value="DELETE" type="hidden">
-     <div class="input-group-btn">
-         <button class="btn btn-danger" type="submit">Delete Shelf</button>
-        </div>
-</form>
+    <br /><br />
+    <form method="POST" action="<%= shelf_path(id: @shelf.id)  %>">
+        <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+        <input name="_method" value="DELETE" type="hidden">
+        <div class="input-group-btn">
+            <button class="btn btn-danger" type="submit">Delete Shelf</button>
+            </div>
+    </form>
+<%end%>

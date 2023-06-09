@@ -1,5 +1,6 @@
 class MembersController < ApplicationController
   before_action :require_login, except: [:new, :create]
+  before_action :authorize, except: [:show, :new, :create]
 
   def index
   @members = Member.all
@@ -17,9 +18,18 @@ class MembersController < ApplicationController
     @member = Member.new(member_params)
 
     if @member.save
-      redirect_to new_session_path, notice: 'Member was successfully created.'
+
+      if current_member
+         redirect_to members_path, notice: 'Member was successfully created.'
+      else
+        redirect_to new_session_path, notice: 'Member was successfully created.'
+      end
     else
+      if current_member
       redirect_to members_path, notice: 'Unable to create member'
+      else
+        redirect_to new_session_path, notice: 'Unable to create member.'
+      end
     end
   end
 
@@ -39,9 +49,14 @@ class MembersController < ApplicationController
 
   def destroy
     @member = Member.find(params[:id])
-    @member.destroy
-
-    redirect_to members_path, notice: @member.firstName + 'Member was successfully destroyed.'
+    if @member.id == current_member.id
+      @member.destroy
+      session[:member_id] = nil
+      redirect_to new_session_path, notice: @member.firstName + ' Member was successfully destroyed And Logged Out.'
+    else
+      @member.destroy
+      redirect_to members_path, notice: @member.firstName + ' Member was successfully destroyed.'
+    end
   end
 
   def search
@@ -51,7 +66,7 @@ class MembersController < ApplicationController
   private
 
   def member_params
-    params.require(:member).permit(:firstName, :lastName, :mobileNumber, :address, :expiryDate, :username, :password_digest, :password_confirmation)
+    params.require(:member).permit(:firstName, :lastName, :mobileNumber, :address, :expiryDate, :username, :password_digest, :role)
   end
  
   def require_login
@@ -59,4 +74,14 @@ class MembersController < ApplicationController
       redirect_to new_session_path, notice: "Please log in to access this page."
     end
   end
+
+  def current_permission
+    @current_permission ||= Permission.new(current_member)
+  end  
+
+  def authorize
+    if !current_permission.allow
+      redirect_back(fallback_location: new_session_path, notice: "Unauthorized To Access This Page.")
+    end
+  end 
 end

@@ -19,4 +19,14 @@ class SessionsController < ApplicationController
     session[:member_id] = nil
     redirect_to new_session_path, notice: "Logged Out"
   end 
+
+  def current_permission
+    @current_permission ||= Permission.new(current_member)
+  end  
+
+  def authorize
+    if !current_permission.allow
+      redirect_back(fallback_location: new_session_path, notice: "Unauthorized To Access This Page.")
+    end
+  end 
 end

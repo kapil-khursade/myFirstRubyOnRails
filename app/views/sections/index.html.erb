@@ -10,5 +10,8 @@
     <li class="list-group-item list-group-item-success"><%= link_to section.name, section_path(section) %></li>
   <% end %>
 </ol>
-<%= link_to "+ Add New Section", new_section_path(), class: 'btn btn-primary btn-lg' %>
+
+<% if current_member.role == "admin" %>
+  <%= link_to "+ Add New Section", new_section_path(), class: 'btn btn-primary btn-lg' %>
+<% end %>
 </div>

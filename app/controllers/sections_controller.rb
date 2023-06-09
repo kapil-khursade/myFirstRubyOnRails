@@ -1,5 +1,6 @@
 class SectionsController < ApplicationController
   before_action :require_login
+  before_action :authorize, except: [:index, :show]
   
   def index
     @sections = Section.all

@@ -14,5 +14,7 @@
   <% end %>
 </ol>
 
-<%= link_to "+ Add New Shelf", new_shelf_path(), class: 'btn btn-primary btn-lg' %>
+<% if current_member.role == "admin" %>
+ <%= link_to "+ Add New Shelf", new_shelf_path(), class: 'btn btn-primary btn-lg' %>
+<% end %>
 </div>
