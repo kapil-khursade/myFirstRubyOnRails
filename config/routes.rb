@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'sessions/new'
   namespace :api do
     get 'members/index'
   end
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
    resources :shelfs
    resources :books
    resources :members
+   resources :sessions
 
    namespace :api do
       resources :shelfs, only: [:index]

@@ -1,0 +1,15 @@
+<% if current_member %>
+  <li><%= link_to 'Logged In As: '+current_member.username, member_path(current_member.id), class: 'nav-link' %></li>
+  <li>
+     <form method="POST" action="<%= session_path("sd")  %>">
+        <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+        <input name="_method" value="DELETE" type="hidden">
+         <div style="margin: 10px 0px 0px 50px">
+         <button class="btn btn-danger" type="submit">Logout</button>
+        </div>
+    </form>
+  </li>
+<% else %>
+  <li><%= link_to 'Login', new_session_path, class: 'nav-link' %></li>
+  <li><%= link_to 'Sign Up', new_member_path, class: 'nav-link' %></li>
+<% end %>

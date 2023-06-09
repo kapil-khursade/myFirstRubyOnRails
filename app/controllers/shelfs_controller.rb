@@ -1,4 +1,6 @@
 class ShelfsController < ApplicationController
+  before_action :require_login
+  
   def index
     @shelfs = Shelf.all
   end
@@ -47,5 +49,11 @@ class ShelfsController < ApplicationController
 
   def shelf_params
     params.require(:shelf).permit(:name, :section_id)
+  end
+
+  def require_login
+    unless logged_in?
+      redirect_to new_session_path, notice: "Please log in to access this page."
+    end
   end
 end

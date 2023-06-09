@@ -26,6 +26,14 @@
       <% end %>
       </div>
     </div>
+    <div class="panel panel-info">
+      <div class="panel-heading">Username</div>
+      <div class="panel-body"><%= @member.username %></div>
+    </div>
+    <div class="panel panel-info">
+      <div class="panel-heading">Password</div>
+      <div class="panel-body"><%= @member.password_digest %></div>
+    </div>
     <br /><br />
     <form method="POST" action="<%= member_path(id: @member.id)  %>">
         <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">

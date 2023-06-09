@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  before_action :require_login
 
   def index
     @books = Book.all
@@ -45,5 +46,11 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit(:name, :author, :publication_year, :shelf_id)
+  end
+
+  def require_login
+    unless logged_in?
+      redirect_to new_session_path, notice: "Please log in to access this page."
+    end
   end
 end
