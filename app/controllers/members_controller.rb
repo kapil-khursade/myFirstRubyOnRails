@@ -1,6 +1,6 @@
 class MembersController < ApplicationController
-  before_action :require_login, except: [:new, :create]
-  before_action :authorize, except: [:show, :new, :create]
+  skip_before_action :require_login, only: [:new, :create]
+  skip_before_action :authorize, only: [:show, :new, :create]
 
   def index
   @members = Member.all
@@ -68,20 +68,4 @@ class MembersController < ApplicationController
   def member_params
     params.require(:member).permit(:firstName, :lastName, :mobileNumber, :address, :expiryDate, :username, :password_digest, :role)
   end
- 
-  def require_login
-    unless logged_in?
-      redirect_to new_session_path, notice: "Please log in to access this page."
-    end
-  end
-
-  def current_permission
-    @current_permission ||= Permission.new(current_member)
-  end  
-
-  def authorize
-    if !current_permission.allow
-      redirect_back(fallback_location: new_session_path, notice: "Unauthorized To Access This Page.")
-    end
-  end 
 end

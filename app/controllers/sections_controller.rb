@@ -1,6 +1,5 @@
 class SectionsController < ApplicationController
-  before_action :require_login
-  before_action :authorize, except: [:index, :show]
+  skip_before_action :authorize, only: [:index, :show]
   
   def index
     @sections = Section.all
@@ -8,7 +7,6 @@ class SectionsController < ApplicationController
 
   def show
     @section = Section.find(params[:id])
-    # @shelfs = Shelf.all
   end
 
   def new
@@ -50,11 +48,5 @@ class SectionsController < ApplicationController
 
   def section_params
     params.require(:section).permit(:name)
-  end
-
-  def require_login
-    unless logged_in?
-      redirect_to new_session_path, notice: "Please log in to access this page."
-    end
   end
 end

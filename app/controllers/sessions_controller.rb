@@ -1,4 +1,8 @@
 class SessionsController < ApplicationController
+  skip_before_action :require_login
+  skip_before_action :authorize
+  before_action :if_login, except: [:destroy]
+
   def new
   end
 
@@ -20,13 +24,9 @@ class SessionsController < ApplicationController
     redirect_to new_session_path, notice: "Logged Out"
   end 
 
-  def current_permission
-    @current_permission ||= Permission.new(current_member)
-  end  
-
-  def authorize
-    if !current_permission.allow
-      redirect_back(fallback_location: new_session_path, notice: "Unauthorized To Access This Page.")
+  def if_login
+    if current_member
+      redirect_to sections_path
     end
-  end 
+  end
 end
