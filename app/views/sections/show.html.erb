@@ -8,7 +8,7 @@
 <%end%>
 </ol>
 
-<% if current_member.role == "admin" %>
+
     <%= link_to "+ Add New Shelf", new_shelf_path(), class: 'btn btn-primary btn-lg' %>
     <br /><br />
     <%= link_to "Edit Section Name", edit_section_path(), class: 'btn btn-warning btn-lg' %>
@@ -21,4 +21,4 @@
             <button class="btn btn-danger" type="submit">Delete Section</button>
         </div>
     </form>
-<%end%>
+

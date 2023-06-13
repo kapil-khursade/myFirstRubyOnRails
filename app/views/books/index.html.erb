@@ -1,9 +1,4 @@
 <div>
-<% if flash[:notice].present? %>
-  <div style="color: red" class="notice">
-    <%= flash[:notice] %>
-  </div>
-<% end %>
 <h1>Books</h1>
 <% if @books.empty? %>
   <p>No Books. Please add the books.</p>
@@ -14,7 +9,6 @@
   <% end %>
 </ol>
 
-<% if current_member.role == "admin" %>
 <%= link_to "+ Add New Book", new_book_path(), class: 'btn btn-primary btn-lg' %>
-<% end%>
+
 </div>

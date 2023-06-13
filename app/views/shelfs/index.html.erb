@@ -13,8 +13,5 @@
     <li class="list-group-item list-group-item-success"><%= link_to shelf.name, shelf_path(shelf) %></li>
   <% end %>
 </ol>
-
-<% if current_member.role == "admin" %>
- <%= link_to "+ Add New Shelf", new_shelf_path(), class: 'btn btn-primary btn-lg' %>
-<% end %>
+<%= link_to "+ Add New Shelf", new_shelf_path(), class: 'btn btn-primary btn-lg' %>
 </div>

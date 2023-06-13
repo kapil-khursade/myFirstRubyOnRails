@@ -13,7 +13,9 @@
   <body>
     <%= render 'layouts/navbar' %>
     <div style="margin: 2vh 5vw">
-    <%= yield %>
+     <p class="notice"><%= notice %></p>
+     <p class="alert"><%= alert %></p>
+     <%= yield %>
     <div>
   </body>
 </html>

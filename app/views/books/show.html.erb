@@ -18,17 +18,16 @@
       <div class="panel-body"><%= @book.publication_year %></div>
     </div>
     <br /><br />
-    <% if current_member.role == "admin" %>
-      <form method="POST" action="<%= book_path(id: @book.id)  %>">
-          <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-          <input name="_method" value="DELETE" type="hidden">
-          <div class="input-group-btn">
-          <button class="btn btn-danger" type="submit">Delete Book</button>
-          </div>
-      </form>
-      <div style="margin: 2vh 0vw">
-      <button class="btn btn-warning" onclick="location.href='<%= edit_book_path(@book) %>'">Edit Book</button>
-      <div>
-    <% end %>
+    <form method="POST" action="<%= book_path(id: @book.id)  %>">
+        <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+        <input name="_method" value="DELETE" type="hidden">
+        <div class="input-group-btn">
+        <button class="btn btn-danger" type="submit">Delete Book</button>
+        </div>
+    </form>
+    <div style="margin: 2vh 0vw">
+    <button class="btn btn-warning" onclick="location.href='<%= edit_book_path(@book) %>'">Edit Book</button>
+    <div>
+
 </div>
 

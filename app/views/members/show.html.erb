@@ -1,10 +1,5 @@
 <div class="panel-group" style="width: 50vw; margin: auto">
     <h2>Member Information</h2>
-    <% if flash[:notice].present? %>
-      <div style="color: red" class="notice">
-        <%= flash[:notice] %>
-      </div>
-    <% end %>
     <div class="panel panel-info">
       <div class="panel-heading">First Name</div>
       <div class="panel-body"><%= @member.firstName %></div>
@@ -31,30 +26,19 @@
       <% end %>
       </div>
     </div>
-    <div class="panel panel-info">
-      <div class="panel-heading">Username</div>
-      <div class="panel-body"><%= @member.username %></div>
-    </div>
-    <div class="panel panel-info">
-      <div class="panel-heading">Password</div>
-      <div class="panel-body"><%= @member.password_digest %></div>
-    </div>
-    <div class="panel panel-info">
-      <div class="panel-heading">Role</div>
-      <div class="panel-body"><%= @member.role %></div>
-    </div>
+    
+    <br /><br />
+   
+    <div style="margin: 2vh 0vw; display:flex; flex-direction:column; width: 150px; height: 200px; justify-content:space-between">
+    <button class="btn btn-warning" onclick="location.href='<%= edit_member_path(@member) %>'">Edit Member</button>
+    <button class="btn btn-warning" onclick="location.href='<%= edit_member_registration_path %>'">Update Password</button>
+    <form method="POST" action="<%= member_path(id: @member.id)  %>">
+        <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+        <input name="_method" value="DELETE" type="hidden">
+        <div class="input-group-btn">
+        <button class="btn btn-danger" type="submit">Delete Member</button>
+        </div>
+    </form>
+    <div>
 
-    <% if current_member.role == "admin" %>
-      <br /><br />
-      <form method="POST" action="<%= member_path(id: @member.id)  %>">
-          <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-          <input name="_method" value="DELETE" type="hidden">
-          <div class="input-group-btn">
-          <button class="btn btn-danger" type="submit">Delete Member</button>
-          </div>
-      </form>
-      <div style="margin: 2vh 0vw">
-      <button class="btn btn-warning" onclick="location.href='<%= edit_member_path(@member) %>'">Edit Member</button>
-      <div>
-    <% end %>
 </div>

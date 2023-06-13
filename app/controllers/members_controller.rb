@@ -1,6 +1,4 @@
 class MembersController < ApplicationController
-  skip_before_action :require_login, only: [:new, :create]
-  skip_before_action :authorize, only: [:show, :new, :create]
 
   def index
   @members = Member.all
@@ -18,18 +16,9 @@ class MembersController < ApplicationController
     @member = Member.new(member_params)
 
     if @member.save
-
-      if current_member
-         redirect_to members_path, notice: 'Member was successfully created.'
-      else
-        redirect_to new_session_path, notice: 'Member was successfully created.'
-      end
+      redirect_to root_url, notice: 'Member was successfully created.'
     else
-      if current_member
-      redirect_to members_path, notice: 'Unable to create member'
-      else
-        redirect_to new_session_path, notice: 'Unable to create member.'
-      end
+      redirect_to root_url, notice: 'Unable to create member.'
     end
   end
 
@@ -49,14 +38,9 @@ class MembersController < ApplicationController
 
   def destroy
     @member = Member.find(params[:id])
-    if @member.id == current_member.id
-      @member.destroy
-      session[:member_id] = nil
-      redirect_to new_session_path, notice: @member.firstName + ' Member was successfully destroyed And Logged Out.'
-    else
-      @member.destroy
-      redirect_to members_path, notice: @member.firstName + ' Member was successfully destroyed.'
-    end
+    @member.destroy
+    redirect_to root_url, notice: ' Member was successfully destroyed And Logged Out.'
+
   end
 
   def search

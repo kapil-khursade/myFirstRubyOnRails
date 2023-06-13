@@ -1,9 +1,4 @@
 <div>
-<% if flash[:notice].present? %>
-  <div style="color: red" class="notice">
-    <%= flash[:notice] %>
-  </div>
-<% end %>
 <h1>Sections</h1>
 <ol class="list-group">
   <% @sections.each do |section| %>
@@ -11,7 +6,6 @@
   <% end %>
 </ol>
 
-<% if current_member.role == "admin" %>
-  <%= link_to "+ Add New Section", new_section_path(), class: 'btn btn-primary btn-lg' %>
-<% end %>
+<%= link_to "+ Add New Section", new_section_path(), class: 'btn btn-primary btn-lg' %>
+
 </div>
