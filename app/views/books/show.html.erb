@@ -17,6 +17,7 @@
       <div class="panel-heading">Publicatino Year</div>
       <div class="panel-body"><%= @book.publication_year %></div>
     </div>
+    <% if can? :manage, Book %>
     <br /><br />
     <form method="POST" action="<%= book_path(id: @book.id)  %>">
         <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
@@ -28,6 +29,7 @@
     <div style="margin: 2vh 0vw">
     <button class="btn btn-warning" onclick="location.href='<%= edit_book_path(@book) %>'">Edit Book</button>
     <div>
+    <% end%>
 
 </div>
 

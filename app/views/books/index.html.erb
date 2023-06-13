@@ -8,7 +8,7 @@
     <li class="list-group-item list-group-item-success"><%= link_to book.name, book_path(book) %></li>
   <% end %>
 </ol>
-
+<% if can? :manage, Book %>
 <%= link_to "+ Add New Book", new_book_path(), class: 'btn btn-primary btn-lg' %>
-
+<% end %>
 </div>

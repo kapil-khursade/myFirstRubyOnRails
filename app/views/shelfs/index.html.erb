@@ -13,5 +13,7 @@
     <li class="list-group-item list-group-item-success"><%= link_to shelf.name, shelf_path(shelf) %></li>
   <% end %>
 </ol>
-<%= link_to "+ Add New Shelf", new_shelf_path(), class: 'btn btn-primary btn-lg' %>
+<% if can? :manage, Shelf%>
+ <%= link_to "+ Add New Shelf", new_shelf_path(), class: 'btn btn-primary btn-lg' %>
+<% end %>
 </div>

@@ -1,5 +1,4 @@
 class ShelfsController < ApplicationController
-  
   def index
     @shelfs = Shelf.all
   end

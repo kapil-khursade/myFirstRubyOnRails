@@ -26,19 +26,21 @@
       <% end %>
       </div>
     </div>
-    
+    <div class="panel panel-info">
+      <div class="panel-heading">Role</div>
+      <div class="panel-body"><%= @member.role %></div>
+    </div>
+    <div class="panel panel-info">
+      <div class="panel-heading">Email</div>
+      <div class="panel-body"><%= @member.email %></div>
+    </div>
+    <% if can? :manage, Member%>
     <br /><br />
-   
-    <div style="margin: 2vh 0vw; display:flex; flex-direction:column; width: 150px; height: 200px; justify-content:space-between">
+    <div style="width: 150px;">
     <button class="btn btn-warning" onclick="location.href='<%= edit_member_path(@member) %>'">Edit Member</button>
+    <br /><br />
     <button class="btn btn-warning" onclick="location.href='<%= edit_member_registration_path %>'">Update Password</button>
-    <form method="POST" action="<%= member_path(id: @member.id)  %>">
-        <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-        <input name="_method" value="DELETE" type="hidden">
-        <div class="input-group-btn">
-        <button class="btn btn-danger" type="submit">Delete Member</button>
-        </div>
-    </form>
     <div>
+    <% end%>
 
 </div>
